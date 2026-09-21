@@ -8,14 +8,22 @@
 
 ```
 .
-├── index.html          الموقع نفسه (الواجهة اللي يشوفها الزائر)
+├── index.html            الموقع نفسه (الواجهة اللي يشوفها الزائر)
 ├── data/
-│   └── deals.json       كل بيانات المتاجر والعروض — هنا تضيف/تعدل المتاجر
+│   └── deals.json          كل بيانات المتاجر والعروض — هنا تضيف/تعدل المتاجر
+├── functions/
+│   └── api/
+│       └── deals.js          الـ API لمنصة Cloudflare Pages
 ├── api/
-│   └── deals.js          الـ API — بيرجع محتوى deals.json كـ JSON
+│   └── deals.js               نفس الـ API بصيغة منصة Vercel (بديل، اختياري)
 ├── package.json
 └── README.md              هذا الملف
 ```
+
+> الموقع (`index.html`) بيتواصل مع `/api/deals` بغض النظر عن أي منصة تنشره
+> عليها — Cloudflare أو Vercel كلاهما بيوصلوا نفس الرابط، بس كل وحدة لها
+> مجلد كود مختلف بالخلفية (`functions/` لـ Cloudflare، `api/` لـ Vercel).
+> ما تحتاج تحذف أي مجلد — المنصة اللي ما تستخدمها ببساطة بتتجاهل مجلدها.
 
 ## كيف تضيف أو تعدّل متجر
 
@@ -47,29 +55,34 @@ vercel dev
 > من `deals.json` — عشان هيك لازم تشغّله عبر `vercel dev` أو بعد النشر
 > عشان يقرأ من الـ API الحقيقي.
 
-## النشر على GitHub + Vercel
+## النشر على Cloudflare Pages (متصل بـ GitHub اللي رفعته)
 
-1. اعمل مستودع (repository) جديد على GitHub وارفع كل ملفات هذا المجلد إليه.
-2. روح لـ [vercel.com](https://vercel.com) واعمل حساب (تقدر تسجّل دخول مباشرة
-   بحساب GitHub).
-3. اضغط "Add New Project" واختر نفس المستودع.
-4. اترك كل الإعدادات الافتراضية (Vercel بيكتشف تلقائيًا إنه فيه مجلد `/api`
-   ويشغّله كـ serverless functions) واضغط Deploy.
-5. بعد دقيقة تقريبًا رح ياخذ رابط جاهز شكله `اسم-المشروع.vercel.app`.
+1. روح لـ [pages.cloudflare.com](https://pages.cloudflare.com) واعمل حساب
+   مجاني (أو سجّل دخول بحساب Cloudflare لو عندك).
+2. من لوحة التحكم اضغط "Create a project" ثم "Connect to Git".
+3. اختار حساب GitHub وامنح Cloudflare صلاحية الوصول لمستودعك، وبعدين
+   اختار مستودع المشروع اللي رفعته.
+4. بصفحة الإعدادات، اترك "Build command" فاضي و"Build output directory"
+   يكون `/` (يعني الجذر) — المشروع بسيط وما يحتاج خطوة بناء (build).
+5. اضغط "Save and Deploy". بعد دقيقة تقريبًا رح ياخذ رابط جاهز شكله
+   `اسم-المشروع.pages.dev`.
 
-**من هلق وطالع**: أي تعديل تعمله على `deals.json` وترفعه لـ GitHub، Vercel
-بيحدّث الموقع تلقائيًا خلال ثواني — بدون ما تعيد رفع أي ملف يدويًا.
+**من هلق وطالع**: أي تعديل ترفعه على `data/deals.json` عبر GitHub، Cloudflare
+بيحدّث الموقع تلقائيًا خلال ثواني.
 
-## اختبار الـ API بعد النشر
+### اختبار الـ API بعد النشر
 
 ```
-GET https://اسم-موقعك.vercel.app/api/deals
-GET https://اسم-موقعك.vercel.app/api/deals?country=مصر
-GET https://اسم-موقعك.vercel.app/api/deals?country=مصر&category=أزياء وملابس
+GET https://اسم-موقعك.pages.dev/api/deals
+GET https://اسم-موقعك.pages.dev/api/deals?country=مصر
+GET https://اسم-موقعك.pages.dev/api/deals?country=مصر&category=أزياء وملابس
 ```
 
-بيرجعلك JSON فيه كل بيانات المتاجر — هاد بالضبط الشكل اللي رح يستخدمه بوت
-تليجرام أو أي نظام ذكاء اصطناعي بالمستقبل.
+## بديل: النشر على Vercel
+
+نفس المشروع فيه أيضًا نسخة الـ API بصيغة Vercel (مجلد `api/`)، فلو حبيت
+تجرب Vercel بدل Cloudflare لاحقًا، الخطوات هي نفسها (ربط GitHub، استيراد
+المشروع، Deploy) بدون أي تعديل إضافي على الكود.
 
 ## الخطوة الجاية: ربط بوت تليجرام (لاحقًا)
 
