@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>نص السعر — تنزيلات 50% في الدول العربية</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1B2430;
+    --sand:#F2E8D5;
+    --sand-dim:#EAE0CB;
+    --emerald:#0F6B5C;
+    --emerald-dark:#0B4F44;
+    --saffron:#E8A93B;
+    --poppy:#D64545;
+    --white:#FFFFFF;
+    --card:#FFFDF8;
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  *{box-sizing:inherit;margin:0;padding:0;}
+  html{scroll-padding-top:env(safe-area-inset-top,0px);}
+  html,body{height:100%;}
+  body{
+    background:var(--sand);
+    color:var(--ink);
+    font-family:'Tajawal',sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--saffron);color:var(--ink);}
+
+  /* ---------- Header ---------- */
+  header{
+    background:var(--emerald);
+    color:var(--sand);
+    padding:18px 24px calc(18px + env(safe-area-inset-top,0px));
+    padding-top:calc(18px + env(safe-area-inset-top,0px));
+    position:sticky;
+    top:0;
+    z-index:50;
+    box-shadow:0 2px 12px rgba(0,0,0,.12);
+  }
+  .header-inner{
+    max-width:1100px;
+    margin:0 auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+  }
+  .brand{
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+    font-family:'Amiri',serif;
+    font-weight:700;
+    font-size:26px;
+    color:var(--white);
+  }
+  .brand span{
+    font-size:14px;
+    font-family:'Tajawal',sans-serif;
+    font-weight:400;
+    color:var(--sand-dim);
+  }
+  .header-note{
+    font-size:13px;
+    color:var(--sand-dim);
+    text-align:left;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    max-width:1100px;
+    margin:0 auto;
+    padding:56px 24px 40px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    align-items:center;
+    gap:32px;
+  }
+  .hero h1{
+    font-family:'Amiri',serif;
+    font-weight:700;
+    font-size:clamp(28px,4vw,44px);
+    line-height:1.35;
+    max-width:640px;
+  }
+  .hero p{
+    margin-top:14px;
+    max-width:560px;
+    color:#4A5568;
+    font-size:16px;
+  }
+  .hero-num{
+    font-family:'Amiri',serif;
+    font-weight:700;
+    font-size:clamp(70px,12vw,150px);
+    color:var(--poppy);
+    line-height:1;
+    white-space:nowrap;
+  }
+  .hero-num sup{
+    font-size:0.3em;
+    font-family:'Tajawal',sans-serif;
+    font-weight:900;
+    vertical-align:super;
+  }
+
+  /* ---------- Country tabs ---------- */
+  .tabs-wrap{
+    position:sticky;
+    top:74px;
+    z-index:40;
+    background:var(--sand);
+    border-bottom:1px solid rgba(27,36,48,.1);
+  }
+  .tabs{
+    max-width:1100px;
+    margin:0 auto;
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    padding:14px 24px;
+    scrollbar-width:none;
+  }
+  .tabs::-webkit-scrollbar{display:none;}
+  .tab-btn{
+    flex:0 0 auto;
+    background:transparent;
+    border:1.5px solid rgba(27,36,48,.18);
+    color:var(--ink);
+    padding:9px 18px;
+    border-radius:100px;
+    font-family:'Tajawal',sans-serif;
+    font-size:14.5px;
+    font-weight:500;
+    cursor:pointer;
+    transition:background .15s ease, color .15s ease, border-color .15s ease;
+    white-space:nowrap;
+  }
+  .tab-btn:hover{border-color:var(--emerald);}
+  .tab-btn.active{
+    background:var(--emerald);
+    border-color:var(--emerald);
+    color:var(--white);
+  }
+  .tabs-secondary{
+    border-top:1px solid rgba(27,36,48,.08);
+    padding-top:10px;
+  }
+  .tab-btn.cat{
+    font-size:13.5px;
+    padding:7px 15px;
+  }
+  .tab-btn.cat:hover{border-color:var(--saffron);}
+  .tab-btn.cat.active{
+    background:var(--saffron);
+    border-color:var(--saffron);
+    color:var(--ink);
+  }
+  .tab-btn:focus-visible{outline:2px solid var(--poppy);outline-offset:2px;}
+
+  /* ---------- Main content ---------- */
+  main{
+    max-width:1100px;
+    margin:0 auto;
+    padding:40px 24px 80px;
+  }
+  .section-block{margin-bottom:44px;}
+  .section-head{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:18px;
+  }
+  .section-head h2{
+    font-size:19px;
+    font-weight:700;
+  }
+  .section-head .count{
+    font-size:13px;
+    color:#6B7686;
+    background:rgba(27,36,48,.06);
+    padding:3px 10px;
+    border-radius:100px;
+  }
+  .rule{
+    height:1px;
+    background:linear-gradient(to left, rgba(27,36,48,.18), transparent);
+    flex:1;
+  }
+
+  .card-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
+    gap:14px;
+  }
+  .deal-card{
+    background:var(--card);
+    border:1px solid rgba(27,36,48,.08);
+    border-radius:10px;
+    padding:16px;
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .deal-card:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 20px rgba(27,36,48,.1);
+  }
+  .deal-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .site-name{
+    font-weight:700;
+    font-size:15.5px;
+  }
+  .badge{
+    background:var(--poppy);
+    color:var(--white);
+    font-size:12.5px;
+    font-weight:700;
+    padding:3px 9px;
+    border-radius:6px;
+    font-family:'Tajawal',sans-serif;
+  }
+  .deal-desc{
+    font-size:13.5px;
+    color:#5A6472;
+  }
+  .deal-foot{
+    margin-top:auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding-top:6px;
+  }
+  .deal-cat{
+    font-size:12px;
+    color:var(--emerald-dark);
+    background:rgba(15,107,92,.09);
+    padding:2px 8px;
+    border-radius:6px;
+  }
+  .visit-link{
+    font-size:13px;
+    font-weight:700;
+    color:var(--emerald);
+    text-decoration:none;
+  }
+  .visit-link:hover{text-decoration:underline;}
+
+  /* empty state */
+  .empty{
+    text-align:center;
+    padding:60px 20px;
+    color:#6B7686;
+  }
+  .empty strong{display:block;color:var(--ink);font-size:16px;margin-bottom:6px;}
+
+  /* ---------- Demo notice ---------- */
+  .notice{
+    max-width:1100px;
+    margin:0 auto;
+    padding:0 24px 20px;
+  }
+  .notice-inner{
+    background:rgba(232,169,59,.15);
+    border:1px solid rgba(232,169,59,.5);
+    border-radius:10px;
+    padding:14px 18px;
+    font-size:13.5px;
+    color:#5A4419;
+  }
+
+  footer{
+    text-align:center;
+    padding:30px 24px calc(30px + env(safe-area-inset-bottom,0px));
+    color:#6B7686;
+    font-size:13px;
+  }
+
+  @media (max-width:640px){
+    .hero{grid-template-columns:1fr;text-align:center;}
+    .hero p{margin-inline:auto;}
+    .hero-num{justify-self:center;}
+    .header-inner{flex-direction:column;align-items:flex-start;gap:4px;}
+    .header-note{text-align:right;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .deal-card{transition:none;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="brand">نص السعر <span>تنزيلات 50%+ من متاجر عربية</span></div>
+    <div class="header-note">نموذج أولي — بيانات تجريبية</div>
+  </div>
+</header>
+
+<div class="hero">
+  <div>
+    <h1>كل تخفيضات الـ50% في مكان واحد، حسب بلدك</h1>
+    <p>موقع يجمع عروض التنزيلات النصف سعر على الألبسة والمنتجات الأخرى من أشهر المتاجر في كل بلد عربي، مبوبة وسهلة التصفح.</p>
+  </div>
+  <div class="hero-num">٪50<sup>+</sup></div>
+</div>
+
+<div class="notice">
+  <div class="notice-inner">
+    هذا نموذج تصميم أولي ببيانات تجريبية لتوضيح شكل وتجربة الموقع. الربط بعروض حقيقية ومحدّثة لحظيًا يحتاج خطوة تالية (ربط عبر واجهات برمجية رسمية للمتاجر أو نظام تتبع أسعار في الخلفية) — نحكي فيها بعد ما توافق على التصميم.
+  </div>
+</div>
+
+<div class="tabs-wrap">
+  <div class="tabs" id="countryTabs"></div>
+  <div class="tabs tabs-secondary" id="categoryTabs"></div>
+</div>
+
+<main id="mainContent"></main>
+
+<footer>نص السعر — نموذج تجريبي غير مرتبط بمتاجر حقيقية بعد</footer>
+
+<script>
+// نسخة احتياطية تُستخدم فقط إذا تعذّر الوصول لـ /api/deals (مثلاً عند فتح
+// الملف مباشرة على الجهاز بدون سيرفر). بعد النشر على Vercel، البيانات
+// الحقيقية بتجي من الـ API مباشرة.
+const FALLBACK_DATA = {
+  "مصر": {
+    "مواقع عامة": [
+      {name:"نون مصر", desc:"كوبونات خصم متاحة باستمرار، وتصل أحيانًا حتى 50% من قيمة المنتج، مع ضمان يصل 12 شهرًا على منتجاتها", off:"50%"},
+      {name:"جوميا مصر", desc:"مصنّف كأكبر منصة تجارة إلكترونية بالتجزئة في مصر (تصنيف Ipsos)، عروض دورية على فئات متعددة بما فيها الأجهزة المنزلية", off:"50%"},
+      {name:"أمازون مصر", desc:"امتداد لموقع سوق.كوم سابقًا، من أكبر مواقع التسوق بالمنطقة العربية بملايين الزوار شهريًا", off:"50%"}
+    ],
+    "أزياء وملابس": [
+      {name:"نمشي", desc:"كوبونات وتخفيضات موسمية على الأزياء تصل أحيانًا لـ50%، منتشر بمصر ودول الخليج", off:"50%"},
+      {name:"شي إن", desc:"عروض موسمية متكررة على الأزياء النسائية والرجالية بالجملة", off:"50%"},
+      {name:"أمريكان إيجل مصر", desc:"كوبونات خصم متاحة عبر بوابات الكوبونات تصل أحيانًا لـ50%", off:"50%"}
+    ],
+    "إلكترونيات وأخرى": [
+      {name:"بي تك (B.TECH)", desc:"أكبر متاجر الأجهزة الكهربائية والمنزلية بمصر، شريك رسمي لجوميا بعروض شهرية خاصة", off:"50%"},
+      {name:"2B", desc:"سلسلة إلكترونيات وأجهزة منزلية مصرية معروفة، عروض دورية على المخزون", off:"50%"},
+      {name:"راية", desc:"تخفيضات على الهواتف المستعملة والمجدّدة", off:"50%"}
+    ]
+  },
+  "السعودية": {
+    "مواقع عامة": [
+      {name:"نون السعودية", desc:"الرياض هي المركز الرئيسي لمنصة نون؛ عروض وخصومات موسمية على فئات متعددة", off:"50%"},
+      {name:"أمازون السعودية", desc:"عروض نهاية الأسبوع وصفقات اليوم الواحد على فئات متعددة", off:"50%"},
+      {name:"جرير", desc:"تصفية مخزون القرطاسية والإلكترونيات بشكل دوري", off:"50%"}
+    ],
+    "أزياء وملابس": [
+      {name:"ناس", desc:"تنزيلات على العلامات الفاخرة", off:"50%"},
+      {name:"نمشي", desc:"خصومات على الأزياء الرياضية والكاجوال (أصبحت تابعة لمنصة نون منذ 2023)", off:"55%"},
+      {name:"سيفورا", desc:"عروض على العناية ومستحضرات التجميل", off:"50%"}
+    ],
+    "إلكترونيات وأخرى": [
+      {name:"إكسترا", desc:"سلسلة سعودية تأسست 2003 وتضم نحو 40 متجرًا بالمملكة، هواتف وحواسيب وأجهزة منزلية", off:"50%"},
+      {name:"إكسايت", desc:"عروض على الألعاب والملحقات الإلكترونية", off:"50%"}
+    ]
+  },
+  "الإمارات": {
+    "مواقع عامة": [
+      {name:"نون الإمارات", desc:"منصة إقليمية انطلقت باستثمار أولي بمليار دولار (صندوق الاستثمارات العامة السعودي يملك نصفها)، ومقرها اللوجستي بدبي. عروض دورية وخصومات موسمية", off:"50%"},
+      {name:"أمازون الإمارات", desc:"صفقات اليوم الواحد وعروض دورية، مع ضمان وإمكانية إرجاع على أغلب المنتجات", off:"50%"}
+    ],
+    "أزياء وملابس": [
+      {name:"نمشي", desc:"منصة أزياء رائدة بالخليج (تضم Nike, Calvin Klein, Adidas وغيرها)، استحوذت عليها نون بالكامل عام 2023 بعد ما كانت مملوكة لإعمار مولز", off:"50%"},
+      {name:"ناس (Ounass)", desc:"منصة أزياء فاخرة تابعة لمجموعة الطاير، تنزيلات نهاية الموسم على الماركات العالمية", off:"50%"}
+    ],
+    "إلكترونيات وأخرى": [
+      {name:"شرف دي جي", desc:"سلسلة متاجر إلكترونية إماراتية معروفة، عروض على الأجهزة الذكية والمنزلية", off:"50%"},
+      {name:"جامبو إلكترونيكس", desc:"من أقدم سلاسل الإلكترونيات بالإمارات، عروض دورية على الأجهزة المنزلية", off:"50%"}
+    ]
+  },
+  "الأردن": {
+    "مواقع عامة": [
+      {name:"مكتبة الوراق أونلاين", desc:"عروض على القرطاسية والكتب", off:"50%"},
+      {name:"جوميا الأردن", desc:"تنزيلات موسمية عامة", off:"50%"}
+    ],
+    "أزياء وملابس": [
+      {name:"سنتربوينت", desc:"خصومات على الملابس العائلية", off:"50%"}
+    ],
+    "إلكترونيات وأخرى": [
+      {name:"دار الشرق للإلكترونيات", desc:"عروض على الأجهزة المنزلية", off:"50%"}
+    ]
+  },
+  "سوريا": {
+    "مواقع عامة": [
+      {name:"السوق المفتوح (OpenSooq)", desc:"سوق إعلانات مبوبة إقليمي كبير — سيارات، عقارات، إلكترونيات وأثاث. ليس متجرًا بتخفيضات رسمية، لكن فيه فرص أسعار جيدة عبر البائعين", off:"—"},
+      {name:"دوشيش (Doushesh)", desc:"منصة إعلانات مبوبة سورية 100% تأسست 2025، تغطي العقارات والمركبات والإلكترونيات والأثاث والوظائف والخدمات", off:"—"},
+      {name:"صفقات (Safakat)", desc:"تطبيق سوري لبيع وشراء الإلكترونيات والسيارات والأزياء والأثاث بين الأفراد، مع نظام توثيق للبائعين", off:"—"}
+    ],
+    "أزياء وملابس": [
+      {name:"— لم يُعثر على متجر أزياء سوري إلكتروني موثوق بعد", desc:"غالبية بيع الملابس بسوريا لسا عبر صفحات فيسبوك وواتساب غير رسمية — إذا عندك أسماء تثق فيها ابعتلي وأضيفها", off:"—"}
+    ],
+    "إلكترونيات وأخرى": [
+      {name:"يا أهلًا", desc:"منصة تجارة إلكترونية سورية جديدة (أُطلقت 2026) بتجمع تجار ومنتجات متنوعة بواجهة موحدة، بديل محلي عن التطبيقات العالمية", off:"—"}
+    ]
+  },
+  "العراق": {
+    "مواقع عامة": [
+      {name:"ميسو (Miswag)", desc:"عروض تخفيضات موسمية", off:"50%"}
+    ],
+    "أزياء وملابس": [
+      {name:"متاجر أزياء بغداد أونلاين", desc:"عروض متفرقة", off:"50%"}
+    ],
+    "إلكترونيات وأخرى": [
+      {name:"إلكترو ماركت العراق", desc:"تخفيضات على الأجهزة", off:"50%"}
+    ]
+  },
+  "الكويت": {
+    "مواقع عامة": [
+      {name:"نون الكويت", desc:"عروض موسم التخفيضات", off:"50%"}
+    ],
+    "أزياء وملابس": [
+      {name:"سنتربوينت الكويت", desc:"خصومات على الملابس", off:"50%"}
+    ],
+    "إلكترونيات وأخرى": [
+      {name:"اكس سايت الكويت", desc:"عروض على الأجهزة الذكية", off:"50%"}
+    ]
+  },
+  "المغرب": {
+    "مواقع عامة": [
+      {name:"جوميا المغرب", desc:"تخفيضات نهاية الموسم", off:"50%"}
+    ],
+    "أزياء وملابس": [
+      {name:"مارجان مول أونلاين", desc:"عروض على الملابس", off:"50%"}
+    ],
+    "إلكترونيات وأخرى": [
+      {name:"إلكتروبلانيت", desc:"تخفيضات على الأجهزة المنزلية", off:"50%"}
+    ]
+  }
+};
+
+const tabsEl = document.getElementById('countryTabs');
+const catTabsEl = document.getElementById('categoryTabs');
+const mainEl = document.getElementById('mainContent');
+const CATEGORIES = ["الكل", "مواقع عامة", "أزياء وملابس", "إلكترونيات وأخرى"];
+let DATA = {};
+let countries = [];
+let active = null;
+let activeCategory = "الكل";
+
+function render(){
+  tabsEl.innerHTML = countries.map(c =>
+    `<button class="tab-btn${c===active?' active':''}" data-c="${c}">${c}</button>`
+  ).join('');
+
+  catTabsEl.innerHTML = CATEGORIES.map(cat =>
+    `<button class="tab-btn cat${cat===activeCategory?' active':''}" data-cat="${cat}">${cat}</button>`
+  ).join('');
+
+  const sections = DATA[active];
+  let sectionKeys = Object.keys(sections);
+  if(activeCategory !== "الكل"){
+    sectionKeys = sectionKeys.filter(k => k === activeCategory);
+  }
+  const hasAny = sectionKeys.some(k => sections[k] && sections[k].some(d => d.name !== '—'));
+
+  if(!hasAny){
+    mainEl.innerHTML = `<div class="empty"><strong>${activeCategory === "الكل" ? "لا توجد عروض مُجمّعة بعد لهذا البلد" : `لا توجد عروض بقسم "${activeCategory}" لهذا البلد بعد`}</strong>حدّثنا لائحة المتاجر الموثوقة هنا وسنضيف عروضها.</div>`;
+    return;
+  }
+
+  mainEl.innerHTML = sectionKeys.map(sec => {
+    const deals = sections[sec];
+    const cards = deals.map(d => `
+      <div class="deal-card">
+        <div class="deal-top">
+          <span class="site-name">${d.name}</span>
+          ${d.off !== '—' ? `<span class="badge">خصم ${d.off}</span>` : ''}
+        </div>
+        <p class="deal-desc">${d.desc}</p>
+        <div class="deal-foot">
+          <span class="deal-cat">${sec}</span>
+          <a class="visit-link" href="#" onclick="return false;">زيارة المتجر ←</a>
+        </div>
+      </div>
+    `).join('');
+    return `
+      <div class="section-block">
+        <div class="section-head">
+          <h2>${sec}</h2>
+          <span class="count">${deals.length} متجر</span>
+          <div class="rule"></div>
+        </div>
+        <div class="card-grid">${cards}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+tabsEl.addEventListener('click', e => {
+  const btn = e.target.closest('.tab-btn');
+  if(!btn) return;
+  active = btn.dataset.c;
+  render();
+  window.scrollTo({top: document.querySelector('.tabs-wrap').offsetTop - 10, behavior:'smooth'});
+});
+
+catTabsEl.addEventListener('click', e => {
+  const btn = e.target.closest('.tab-btn');
+  if(!btn) return;
+  activeCategory = btn.dataset.cat;
+  render();
+});
+
+async function loadData(){
+  try {
+    const res = await fetch('/api/deals');
+    if(!res.ok) throw new Error('API response not ok');
+    const json = await res.json();
+    DATA = json.data;
+  } catch(err){
+    console.warn('تعذر تحميل البيانات من /api/deals، استخدام النسخة الاحتياطية المحلية.', err);
+    DATA = FALLBACK_DATA;
+  }
+  countries = Object.keys(DATA);
+  active = countries[0];
+  render();
+}
+
+loadData();
+</script>
+</body>
+</html>
