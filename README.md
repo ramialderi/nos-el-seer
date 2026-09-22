@@ -11,19 +11,21 @@
 ├── index.html            الموقع نفسه (الواجهة اللي يشوفها الزائر)
 ├── data/
 │   └── deals.json          كل بيانات المتاجر والعروض — هنا تضيف/تعدل المتاجر
+├── netlify/
+│   └── functions/
+│       └── deals.js          الـ API لمنصة Netlify (المستخدمة حاليًا: noselseer.netlify.app)
+├── netlify.toml              إعدادات Netlify (بتحول /api/deals لمجلد الدوال تلقائيًا)
 ├── functions/
 │   └── api/
-│       └── deals.js          الـ API لمنصة Cloudflare Pages
+│       └── deals.js           نفس الـ API بصيغة Cloudflare Pages (بديل)
 ├── api/
-│   └── deals.js               نفس الـ API بصيغة منصة Vercel (بديل، اختياري)
+│   └── deals.js               نفس الـ API بصيغة Vercel (بديل)
 ├── package.json
 └── README.md              هذا الملف
 ```
 
-> الموقع (`index.html`) بيتواصل مع `/api/deals` بغض النظر عن أي منصة تنشره
-> عليها — Cloudflare أو Vercel كلاهما بيوصلوا نفس الرابط، بس كل وحدة لها
-> مجلد كود مختلف بالخلفية (`functions/` لـ Cloudflare، `api/` لـ Vercel).
-> ما تحتاج تحذف أي مجلد — المنصة اللي ما تستخدمها ببساطة بتتجاهل مجلدها.
+> الموقع (`index.html`) بيتواصل مع `/api/deals` بغض النظر عن أي منصة —
+> ما تحتاج تحذف أي مجلد، كل منصة بتستخدم مجلدها وبتتجاهل الباقي.
 
 ## كيف تضيف أو تعدّل متجر
 
@@ -55,34 +57,31 @@ vercel dev
 > من `deals.json` — عشان هيك لازم تشغّله عبر `vercel dev` أو بعد النشر
 > عشان يقرأ من الـ API الحقيقي.
 
-## النشر على Cloudflare Pages (متصل بـ GitHub اللي رفعته)
+## النشر على Netlify (المنصة المستخدمة حاليًا)
 
-1. روح لـ [pages.cloudflare.com](https://pages.cloudflare.com) واعمل حساب
-   مجاني (أو سجّل دخول بحساب Cloudflare لو عندك).
-2. من لوحة التحكم اضغط "Create a project" ثم "Connect to Git".
-3. اختار حساب GitHub وامنح Cloudflare صلاحية الوصول لمستودعك، وبعدين
-   اختار مستودع المشروع اللي رفعته.
-4. بصفحة الإعدادات، اترك "Build command" فاضي و"Build output directory"
-   يكون `/` (يعني الجذر) — المشروع بسيط وما يحتاج خطوة بناء (build).
-5. اضغط "Save and Deploy". بعد دقيقة تقريبًا رح ياخذ رابط جاهز شكله
-   `اسم-المشروع.pages.dev`.
+الموقع شغّال أصلاً على `noselseer.netlify.app` — لكن لو نُشر بسحب وإفلات
+ملف واحد فقط، الـ API (مجلد `netlify/functions`) ما بيكون انفعل بعد. عشان
+يشتغل الـ API، لازم تربط الموقع بمستودع Git (بدل رفع ملف واحد يدويًا):
 
-**من هلق وطالع**: أي تعديل ترفعه على `data/deals.json` عبر GitHub، Cloudflare
-بيحدّث الموقع تلقائيًا خلال ثواني.
+1. من لوحة تحكم الموقع بـ Netlify، روح لـ "Site configuration" ثم
+   "Build & deploy" ثم "Link repository" (أو أنشئ موقع جديد واختار
+   "Import an existing project" واربطه بنفس مستودع GitHub).
+2. اترك "Build command" فاضي، و"Publish directory" حطّه نقطة (`.`).
+3. احفظ وانتظر يعيد النشر — Netlify بيكتشف تلقائيًا مجلد
+   `netlify/functions` وملف `netlify.toml` ويفعّل الـ API.
 
-### اختبار الـ API بعد النشر
+### اختبار الـ API بعد الربط
 
 ```
-GET https://اسم-موقعك.pages.dev/api/deals
-GET https://اسم-موقعك.pages.dev/api/deals?country=مصر
-GET https://اسم-موقعك.pages.dev/api/deals?country=مصر&category=أزياء وملابس
+GET https://noselseer.netlify.app/api/deals
+GET https://noselseer.netlify.app/api/deals?country=مصر
+GET https://noselseer.netlify.app/api/deals?country=مصر&category=أزياء وملابس
 ```
 
-## بديل: النشر على Vercel
+## بدائل: Cloudflare Pages أو Vercel
 
-نفس المشروع فيه أيضًا نسخة الـ API بصيغة Vercel (مجلد `api/`)، فلو حبيت
-تجرب Vercel بدل Cloudflare لاحقًا، الخطوات هي نفسها (ربط GitHub، استيراد
-المشروع، Deploy) بدون أي تعديل إضافي على الكود.
+نفس المشروع فيه نسخ الـ API بصيغة Cloudflare (مجلد `functions/`) وVercel
+(مجلد `api/`) لو حبيت تجرب منصة تانية لاحقًا — بدون أي تعديل إضافي.
 
 ## الخطوة الجاية: ربط بوت تليجرام (لاحقًا)
 
