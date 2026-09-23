@@ -1,0 +1,41 @@
+name: تحديث التخفيضات تلقائيًا
+
+on:
+  schedule:
+    # كل 6 ساعات — عدّل الرقم حسب الحاجة (تنسيق cron: دقيقة ساعة يوم شهر يوم-أسبوع)
+    - cron: "0 */6 * * *"
+  workflow_dispatch: {} # يسمح بتشغيل يدوي من تاب "Actions" بـ GitHub
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # لازم صلاحية الكتابة عشان يقدر يرفع تحديث deals.json
+    steps:
+      - name: تحميل المستودع
+        uses: actions/checkout@v4
+
+      - name: تجهيز Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: تثبيت الاعتماديات
+        working-directory: scraper
+        run: npm install
+
+      - name: تثبيت متصفح Chromium (لـ Playwright)
+        working-directory: scraper
+        run: npx playwright install --with-deps chromium
+
+      - name: تشغيل الفحص
+        working-directory: scraper
+        run: node scrape.js
+
+      - name: رفع التحديثات (لو في تغيير)
+        run: |
+          git config user.name "nos-el-seer-bot"
+          git config user.email "actions@github.com"
+          git add data/deals.json
+          git diff --staged --quiet || git commit -m "تحديث تلقائي لنسب التخفيضات"
+          git push
