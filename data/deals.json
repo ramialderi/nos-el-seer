@@ -11,7 +11,7 @@
         "name": "جوميا مصر",
         "desc": "مصنّف كأكبر منصة تجارة إلكترونية بالتجزئة في مصر (تصنيف Ipsos)، عروض دورية على فئات متعددة بما فيها الأجهزة المنزلية",
         "off": "50%",
-        "url": "https://www.jumia.com.eg/"
+        "url": "https://www.jumia.com.eg/flash-sales/"
       },
       {
         "name": "أمازون مصر",
@@ -25,7 +25,7 @@
         "name": "نمشي",
         "desc": "كوبونات وتخفيضات موسمية على الأزياء تصل أحيانًا لـ50%، منتشر بمصر ودول الخليج",
         "off": "50%",
-        "url": "https://www.namshi.com/egypt-en/"
+        "url": "https://www.namshi.com/egypt-en/sale/"
       },
       {
         "name": "شي إن",
@@ -97,7 +97,7 @@
         "name": "نمشي",
         "desc": "خصومات على الأزياء الرياضية والكاجوال (أصبحت تابعة لمنصة نون منذ 2023)",
         "off": "55%",
-        "url": "https://www.namshi.com/saudi-en/"
+        "url": "https://www.namshi.com/saudi-en/sale/"
       },
       {
         "name": "سيفورا",
@@ -111,7 +111,7 @@
         "name": "إكسترا",
         "desc": "سلسلة سعودية تأسست 2003 وتضم نحو 40 متجرًا بالمملكة، هواتف وحواسيب وأجهزة منزلية",
         "off": "40%",
-        "url": "https://www.extra.com/en-sa/",
+        "url": "https://www.extra.com/en-sa/search/?q=clerance%3Arelevance%3Atype%3APRODUCT&text=clerance&pg=1&pageSize=24&sort=relevance",
         "last_scraped": "2026-09-23T19:02:00.145Z"
       }
     ]
@@ -136,7 +136,7 @@
         "name": "نمشي",
         "desc": "منصة أزياء رائدة بالخليج (تضم Nike, Calvin Klein, Adidas وغيرها)، استحوذت عليها نون بالكامل عام 2023 بعد ما كانت مملوكة لإعمار مولز",
         "off": "50%",
-        "url": "https://www.namshi.com/uae-en/"
+        "url": "https://www.namshi.com/uae-en/sale/"
       },
       {
         "name": "ناس (Ounass)",
