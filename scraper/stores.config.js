@@ -35,15 +35,15 @@ module.exports = [
     category: "مواقع عامة",
     name: "جوميا مصر",
     dealsUrl: "https://www.jumia.com.eg/flash-sales/",
-    selector: "TODO_SELECTOR",
+    selector: ".bdg._dsct", // ✅ مؤكد من الموقع الحي: <div class="bdg _dsct _sm">57%</div>
     renderJs: true
   },
   {
     country: "السعودية",
     category: "إلكترونيات وأخرى",
     name: "إكسترا",
-    dealsUrl: "https://www.extra.com/en-sa/offers/",
-    selector: "TODO_SELECTOR",
+    dealsUrl: "https://www.extra.com/en-sa/search/?q=clerance%3Arelevance%3Atype%3APRODUCT&text=clerance&pg=1&pageSize=24&sort=relevance",
+    selector: ".save-percent-tag", // ✅ مؤكد من الموقع الحي: <section class="save-percent-tag top-right-tag">36.4% Off</section>
     renderJs: true
   },
   {
