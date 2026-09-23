@@ -53,6 +53,33 @@ module.exports = [
     dealsUrl: "https://www.namshi.com/uae-en/sale/",
     selector: "TODO_SELECTOR",
     renderJs: true
+  },
+  {
+    country: "المغرب",
+    category: "مواقع عامة",
+    name: "جوميا المغرب",
+    dealsUrl: "https://www.jumia.ma/flash-sales/",
+    // ✅ نفس منصة جوميا مصر (نفس الشركة، نفس نظام العرض) — أعدنا استخدام
+    // نفس الـ selector المؤكد من هناك، احتمال كبير يشتغل بدون فحص يدوي.
+    // لو طلع ⚠️ أول تشغيل، بس وقتها نحتاج نفحصه يدويًا مثل الباقي.
+    selector: ".bdg._dsct",
+    renderJs: true
+  },
+  {
+    country: "مصر",
+    category: "أزياء وملابس",
+    name: "سنتربوينت مصر",
+    dealsUrl: "https://www.centrepointstores.com/eg/sale",
+    selector: "TODO_SELECTOR",
+    renderJs: true
+  },
+  {
+    country: "السعودية",
+    category: "مواقع عامة",
+    name: "جرير",
+    dealsUrl: "https://www.jarir.com/sa-en/offers",
+    selector: "TODO_SELECTOR",
+    renderJs: true
   }
 
   // أضف باقي المتاجر هون بنفس الشكل — أهم شي country/category/name
