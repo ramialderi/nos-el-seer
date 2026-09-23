@@ -36,9 +36,9 @@ function saveDeals(deals) {
 function extractMaxPercent(texts) {
   let max = null;
   for (const t of texts) {
-    const match = t.match(/(\d{1,3})\s*%/);
+    const match = t.match(/(\d{1,3}(?:\.\d+)?)\s*%/);
     if (match) {
-      const val = parseInt(match[1], 10);
+      const val = Math.round(parseFloat(match[1]));
       if (val > 0 && val <= 100 && (max === null || val > max)) max = val;
     }
   }
