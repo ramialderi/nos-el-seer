@@ -1,0 +1,12 @@
+{
+  "name": "nos-el-seer-scraper",
+  "version": "1.0.0",
+  "private": true,
+  "description": "روبوت فحص تلقائي لتحديث نسب التخفيضات بملف data/deals.json",
+  "scripts": {
+    "scrape": "node scrape.js"
+  },
+  "dependencies": {
+    "playwright": "^1.48.0"
+  }
+}
