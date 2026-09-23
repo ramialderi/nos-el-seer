@@ -173,6 +173,17 @@
     padding:40px 24px 80px;
   }
   .section-block{margin-bottom:44px;}
+  .country-block{margin-bottom:36px;}
+  .country-heading{
+    font-family:'Amiri',serif;
+    font-weight:700;
+    font-size:22px;
+    color:var(--emerald-dark);
+    padding-bottom:8px;
+    margin-bottom:18px;
+    border-bottom:2px solid var(--saffron);
+    display:inline-block;
+  }
   .section-head{
     display:flex;
     align-items:center;
@@ -454,34 +465,24 @@ const FALLBACK_DATA = {
 const tabsEl = document.getElementById('countryTabs');
 const catTabsEl = document.getElementById('categoryTabs');
 const mainEl = document.getElementById('mainContent');
+const ALL_LABEL = "الكل";
 const CATEGORIES = ["الكل", "مواقع عامة", "أزياء وملابس", "إلكترونيات وأخرى"];
 let DATA = {};
 let countries = [];
-let active = null;
+let active = ALL_LABEL;
 let activeCategory = "الكل";
 
-function render(){
-  tabsEl.innerHTML = countries.map(c =>
-    `<button class="tab-btn${c===active?' active':''}" data-c="${c}">${c}</button>`
-  ).join('');
-
-  catTabsEl.innerHTML = CATEGORIES.map(cat =>
-    `<button class="tab-btn cat${cat===activeCategory?' active':''}" data-cat="${cat}">${cat}</button>`
-  ).join('');
-
-  const sections = DATA[active];
+// يبني HTML لأقسام بلد واحد (مستخدمة لعرض بلد مفرد، وأيضًا لكل بلد
+// داخل عرض "الكل"). يرجّع null إذا ما في أي عرض يطابق فلتر القسم الحالي.
+function buildCountrySections(sections){
   let sectionKeys = Object.keys(sections);
   if(activeCategory !== "الكل"){
     sectionKeys = sectionKeys.filter(k => k === activeCategory);
   }
   const hasAny = sectionKeys.some(k => sections[k] && sections[k].some(d => d.name !== '—'));
+  if(!hasAny) return null;
 
-  if(!hasAny){
-    mainEl.innerHTML = `<div class="empty"><strong>${activeCategory === "الكل" ? "لا توجد عروض مُجمّعة بعد لهذا البلد" : `لا توجد عروض بقسم "${activeCategory}" لهذا البلد بعد`}</strong>حدّثنا لائحة المتاجر الموثوقة هنا وسنضيف عروضها.</div>`;
-    return;
-  }
-
-  mainEl.innerHTML = sectionKeys.map(sec => {
+  return sectionKeys.map(sec => {
     const deals = sections[sec];
     const cards = deals.map(d => `
       <div class="deal-card">
@@ -507,6 +508,37 @@ function render(){
       </div>
     `;
   }).join('');
+}
+
+function render(){
+  tabsEl.innerHTML = [ALL_LABEL, ...countries].map(c =>
+    `<button class="tab-btn${c===active?' active':''}" data-c="${c}">${c}</button>`
+  ).join('');
+
+  catTabsEl.innerHTML = CATEGORIES.map(cat =>
+    `<button class="tab-btn cat${cat===activeCategory?' active':''}" data-cat="${cat}">${cat}</button>`
+  ).join('');
+
+  if(active === ALL_LABEL){
+    const perCountryHtml = countries.map(country => {
+      const html = buildCountrySections(DATA[country]);
+      if(!html) return '';
+      return `
+        <div class="country-block">
+          <div class="country-heading">${country}</div>
+          ${html}
+        </div>
+      `;
+    }).join('');
+
+    mainEl.innerHTML = perCountryHtml.trim()
+      ? perCountryHtml
+      : `<div class="empty"><strong>لا توجد عروض بقسم "${activeCategory}" بأي بلد بعد</strong>جرّب قسم تاني أو بلد محدد.</div>`;
+    return;
+  }
+
+  const html = buildCountrySections(DATA[active]);
+  mainEl.innerHTML = html || `<div class="empty"><strong>${activeCategory === "الكل" ? "لا توجد عروض مُجمّعة بعد لهذا البلد" : `لا توجد عروض بقسم "${activeCategory}" لهذا البلد بعد`}</strong>حدّثنا لائحة المتاجر الموثوقة هنا وسنضيف عروضها.</div>`;
 }
 
 tabsEl.addEventListener('click', e => {
@@ -535,7 +567,6 @@ async function loadData(){
     DATA = FALLBACK_DATA;
   }
   countries = Object.keys(DATA);
-  active = countries[0];
   render();
 }
 
