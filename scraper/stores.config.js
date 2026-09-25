@@ -78,7 +78,15 @@ module.exports = [
     category: "مواقع عامة",
     name: "جرير",
     dealsUrl: "https://www.jarir.com/sa-en/offers",
-    selector: "TODO_SELECTOR",
+    selector: "TODO_SELECTOR", // ⚠️ جرير بيعرض مبلغ التوفير بالريال مو نسبة % — السكربت الحالي ما بيقدر يقرأه، تخطّيناه مؤقتًا
+    renderJs: true
+  },
+  {
+    country: "الإمارات",
+    category: "إلكترونيات وأخرى",
+    name: "شرف دي جي",
+    dealsUrl: "https://www.sharafdg.com/offers",
+    selector: ".onsale", // ✅ مؤكد من الموقع الحي: <div class="onsale h-16"> 26% OFF </div>
     renderJs: true
   }
 
